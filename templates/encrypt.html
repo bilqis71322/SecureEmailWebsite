@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="card">
+    <h2>Encrypt & Send Message (Sender)</h2>
+    <form method="POST">
+        <label for="receiver_email">Receiver Email:</label>
+        <input type="email" name="receiver_email" id="receiver_email" required>
+
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
+
+        <button type="submit">Encrypt & Send</button>
+    </form>
+
+    {% if combined %}
+    <hr>
+    <h3>Encrypted Payload (copy & send to receiver if needed):</h3>
+    <textarea rows="5" style="width:100%;">{{ combined }}</textarea>
+
+    <h3>Signature (copy & send too):</h3>
+    <textarea rows="3" style="width:100%;">{{ signature_b64 }}</textarea>
+    {% endif %}
+</div>
+{% endblock %}

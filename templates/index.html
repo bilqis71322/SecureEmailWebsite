@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container" style="text-align:center;margin-top:60px;">
+  <h1>🔐 Welcome to Secure Email Web App</h1>
+  <p style="margin-top:10px;">
+    Send and receive fully encrypted emails with digital signature verification.
+  </p>
+  {% if not session.get('authenticated') %}
+    <a href="{{ url_for('login') }}" class="btn">Login to Continue</a>
+  {% else %}
+    <a href="{{ url_for('encrypt') }}" class="btn">Go to Encrypt</a>
+  {% endif %}
+</div>
+{% endblock %}

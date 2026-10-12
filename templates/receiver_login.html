@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="card">
+    <h2>Receiver Login (OTP)</h2>
+    <form method="POST">
+        <label for="email">Receiver Email:</label>
+        <input type="email" name="email" id="email" required>
+        <button type="submit">Send Receiver OTP</button>
+    </form>
+</div>
+{% endblock %}

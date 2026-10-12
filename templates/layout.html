@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Email Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">Secure Email</div>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('sender_login') }}">Sender Login</a></li>
+            <li><a href="{{ url_for('receiver_login') }}">Receiver Login</a></li>
+
+            {% if session.get('sender_authenticated') %}
+                <li><a href="{{ url_for('encrypt') }}">Encrypt</a></li>
+            {% endif %}
+
+            {% if session.get('receiver_authenticated') %}
+                <li><a href="{{ url_for('decrypt') }}">Decrypt</a></li>
+            {% endif %}
+
+            {% if session.get('sender_authenticated') or session.get('receiver_authenticated') %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        {% block body %}{% endblock %}
+    </main>
+</body>
+</html>

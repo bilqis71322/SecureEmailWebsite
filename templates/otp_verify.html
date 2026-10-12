@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="max-width:400px;margin:auto;text-align:center;margin-top:40px;">
+  <h2>Verify OTP</h2>
+  <p>We’ve sent a 6-digit OTP to your email: <b>{{ email }}</b></p>
+  <form method="POST" action="{{ url_for('verify_otp') }}">
+    <input type="text" name="otp" placeholder="Enter OTP" required maxlength="6"
+           style="padding:10px;width:100%;margin-bottom:15px;">
+    <button type="submit" style="padding:10px 20px;">Verify OTP</button>
+  </form>
+</div>
+{% endblock %}

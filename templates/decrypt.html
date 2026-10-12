@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="card">
+    <h2>Decrypt Message (Receiver)</h2>
+    <form method="POST">
+        <label for="combined">Encrypted Payload:</label>
+        <textarea name="combined" id="combined" rows="5" required>{{ combined_b64 or "" }}</textarea>
+
+        <label for="signature">Signature (from sender):</label>
+        <textarea name="signature" id="signature" rows="3" required>{{ signature_b64 or "" }}</textarea>
+
+        <button type="submit">Decrypt & Verify</button>
+    </form>
+
+    {% if plaintext %}
+    <hr>
+    <h3>Decrypted Message:</h3>
+    <pre>{{ plaintext }}</pre>
+    <p><strong>{{ sig_status }}</strong></p>
+    {% endif %}
+</div>
+{% endblock %}

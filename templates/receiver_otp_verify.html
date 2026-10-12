@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="card">
+    <h2>Verify Receiver OTP</h2>
+    <p>OTP sent to: {{ email }}</p>
+
+    <form method="POST" action="{{ url_for('receiver_verify_otp') }}">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" name="otp" id="otp" required>
+        <button type="submit">Verify</button>
+    </form>
+</div>
+{% endblock %}
